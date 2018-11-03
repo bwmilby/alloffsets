@@ -20,7 +20,7 @@ end mouseUp
 
 
 function bwmAllOffsets pDelim, pString, pCaseSensitive
-   local tDelimA, tI, tItem, tLen, tLenA, tN, tPos, tResult
+   local tDelimA, tI, tItem, tItemLen, tLen, tLenA, tN, tPos, tResult
    
    -- returns a comma-delimited list of the offsets of pDelim in pString
    set the caseSensitive to pCaseSensitive is true
@@ -65,10 +65,14 @@ function bwmAllOffsets pDelim, pString, pCaseSensitive
       end if
    end if
    
-   if len(tItem) > 1 then
-      repeat with tI = tN down to len(tItem)+1
-         if char -len(tDelimA[tI]) to -1 of pString is tDelimA[tI] then
-            delete item -1 of tResult
+   put len(tItem) into tItemLen
+   if tItemLen > 0 then
+      subtract tItemLen from tLen
+      repeat with tI = tN down to 1
+         if tLen > tLenA[tI] then
+            if char -len(tDelimA[tI]) to -1 of pString is tDelimA[tI] then
+               delete item -1 of tResult
+            end if
          end if
       end repeat
    end if

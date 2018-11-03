@@ -20,7 +20,8 @@ end mouseUp
 
 
 function allOffsets2 pDelim, pString, pCaseSensitive
-   local tDelimA, tI, tItem, tLen, tLenA, tN, tPos, tRemove, tResult
+   local tDelimA, tI, tItem, tItemLen, tLen, tLenA, tN, tPos, tRemove
+   local tResult
    
    set the caseSensitive to pCaseSensitive is true
    put len(pDelim) into tLen
@@ -60,14 +61,16 @@ function allOffsets2 pDelim, pString, pCaseSensitive
    end if
    
    if tN > 0 then
-      put len(tItem) into tLen
-      if tLen > 1 then
-         put char -len(tDelimA[tN]) to -1 of pString into pString
-         repeat with tI = tN down to tLen+1
-            if pString is tDelimA[tI] then
-               add 1 to tRemove
+      put len(tItem) into tItemLen
+      if tItemLen > 0 then
+         subtract tItemLen from tLen
+         repeat with tI = tN down to 1
+            if tLen > tLenA[tI] then
+               put char -len(tDelimA[tI]) to -1 of pString into pString
+               if pString is tDelimA[tI] then
+                  add 1 to tRemove
+               end if
             end if
-            delete char 1 of pString
          end repeat
       end if
    end if
