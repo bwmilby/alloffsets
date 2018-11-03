@@ -7,9 +7,18 @@ Script "stack_allOffsets_button_id_1003"
 
 
 on mouseUp
-   put allOffsets(field "needle", field "haystack") into field "results"
+   local tStart, tError
+   
+   put empty into field "results"
+   put the milliseconds into tStart
+   repeat with i = 1 to 1000
+      get allOffsets(field "needle", field "haystack")
+   end repeat
+   put the milliseconds - tStart & "ms /" && the number of items of it & ": " after field "results"
+   put the last item of it > len(field "haystack") into tError
+   put allOffsets(field "needle", field "haystack") after field "results"
+   if tError then put " [Wrong]" after field "results"
    put cr after field "results"
-   --put allOffsets2(field "needle", field "haystack") after field "results"
 end mouseUp
 
 

@@ -7,6 +7,13 @@ Script "stack_allOffsets_button_id_1009"
 
 
 on mouseUp
+   local tStart
+   
+   put the milliseconds into tStart
+   repeat with i = 1 to 1000
+      get bwmAllOffsets(field "needle", field "haystack")
+   end repeat
+   put the milliseconds - tStart & "ms /" && the number of items of it & ": " after field "results"
    put bwmAllOffsets(field "needle", field "haystack") after field "results"
    put cr after field "results"
 end mouseUp
@@ -49,24 +56,23 @@ function bwmAllOffsets pDelim, pString, pCaseSensitive
       put tPos,"" after tResult
    end repeat
    set the itemDel to comma
-   delete char -1 of tResult
    
-   if item -1 of tResult > len(pString) then
-      if the number of items of tResult is 1 then
+   if tPos > len(pString) then
+      if tResult is tPos,"" then
          return 0
       else
          delete item -1 of tResult
       end if
    end if
    
-   if len(tItem) > 0 then
+   if len(tItem) > 1 then
       repeat with tI = tN down to len(tItem)+1
          if char -len(tDelimA[tI]) to -1 of pString is tDelimA[tI] then
             delete item -1 of tResult
          end if
       end repeat
    end if
-   return tResult
+   return char 1 to -2 of tResult
 end bwmAllOffsets
 
 
@@ -82,15 +88,14 @@ private function _allOffsets0 pDelim, pString, pCaseSensitive
       put tPos,"" after tResult
    end repeat
    set the itemDel to comma
-   delete char -1 of tResult
-   if item -1 of tResult > len(pString) then
-      if the number of items of tResult is 1 then
+   if tPos > len(pString) then
+      if tResult is tPos,""  then
          return 0
       else
-         delete item -1 of tResult
+         return item 1 to -2 of tResult
       end if
    end if
-   return tResult
+   return char 1 to -2 of tResult
 end _allOffsets0
 
 
@@ -110,13 +115,12 @@ private function _allOffsets1 pDelim, pDelim1, pString, pCaseSensitive
       put tPos,"" after tResult
    end repeat
    set the itemDel to comma
-   delete char -1 of tResult
-   if item -1 of tResult > len(pString) then
-      if the number of items of tResult is 1 then
+   if tPos > len(pString) then
+      if tResult is tPos,""  then
          return 0
       else
-         delete item -1 of tResult
+         return item 1 to -2 of tResult
       end if
    end if
-   return tResult
+   return char 1 to -2 of tResult
 end _allOffsets1

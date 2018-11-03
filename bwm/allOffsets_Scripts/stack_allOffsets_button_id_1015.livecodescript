@@ -7,13 +7,20 @@ Script "stack_allOffsets_button_id_1015"
 
 
 on mouseUp
+   local tStart
+   
+   put the milliseconds into tStart
+   repeat with i = 1 to 1000
+      get allOffsets2(field "needle", field "haystack")
+   end repeat
+   put the milliseconds - tStart & "ms /" && the number of items of it & ": " after field "results"
    put allOffsets2(field "needle", field "haystack") after field "results"
    put cr after field "results"
 end mouseUp
 
 
 function allOffsets2 pDelim, pString, pCaseSensitive
-   local tDelimA, tI, tItem, tLen, tLenA, tN, tPos, tResult
+   local tDelimA, tI, tItem, tLen, tLenA, tN, tPos, tRemove, tResult
    
    set the caseSensitive to pCaseSensitive is true
    put len(pDelim) into tLen
@@ -42,22 +49,28 @@ function allOffsets2 pDelim, pString, pCaseSensitive
       put tPos,"" after tResult
    end repeat
    set the itemDel to comma
-   delete char -1 of tResult
    
-   if item -1 of tResult > len(pString) then
-      if the number of items of tResult is 1 then
+   put 0 into tRemove
+   if tPos > len(pString) then
+      if tResult is tPos,"" then
          return 0
       else
-         delete item -1 of tResult
+         add 1 to tRemove
       end if
    end if
    
-   if len(tItem) > 0 then
-      repeat with tI = tN down to len(tItem)+1
-         if char -len(tDelimA[tI]) to -1 of pString is tDelimA[tI] then
-            delete item -1 of tResult
-         end if
-      end repeat
+   if tN > 0 then
+      put len(tItem) into tLen
+      if tLen > 1 then
+         put char -len(tDelimA[tN]) to -1 of pString into pString
+         repeat with tI = tN down to tLen+1
+            if pString is tDelimA[tI] then
+               add 1 to tRemove
+            end if
+            delete char 1 of pString
+         end repeat
+      end if
    end if
-   return tResult
+   if tRemove > 0 then return item 1 to -(tRemove+1) of tResult
+   return char 1 to -2 of tResult
 end allOffsets2
