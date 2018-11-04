@@ -1,7 +1,7 @@
 Script "stack_allOffsets_button_id_1015"
 
 /*
-# Name: button "allOffsets2" of bkgnd id 1013 of stack "allOffsets"
+# Name: button "allOffsets (bwm)" of bkgnd id 1013 of stack "allOffsets"
 # ID: button id 1015 of bkgnd id 1013 of stack "allOffsets"
 */
 
