@@ -1,32 +1,20 @@
 Script "stack_allOffsets_button_id_1026"
 
 /*
-# Name: button "bwmAllOffsets @" of bkgnd id 1013 of stack "allOffsets"
+# Name: button "BWM try3" of bkgnd id 1013 of stack "allOffsets"
 # ID: button id 1026 of bkgnd id 1013 of stack "allOffsets"
+# Behavior: button id 1028 of stack "allOffsets"
 */
 
 
-on mouseUp
-   local tStart
-   
-   put the milliseconds into tStart
-   repeat with i = 1 to 1000
-      get bwmAllOffsets(field "needle", field "haystack")
-   end repeat
-   put the milliseconds - tStart & "ms /" && the number of items of it & ": " after field "results"
-   put bwmAllOffsets(field "needle", field "haystack") after field "results"
-   put cr after field "results"
-end mouseUp
-
-
-function bwmAllOffsets pDelim, pString, pCaseSensitive
+function allOffsets pDelim, pString, pCaseSensitive, pNoOverlaps
    local tDelimA, tI, tItem, tItemLen, tLen, tLenList, tN, tPos, tResult
    
    -- returns a comma-delimited list of the offsets of pDelim in pString
    set the caseSensitive to pCaseSensitive is true
    put len(pDelim) into tLen
    put numtochar(chartonum(char -1 of pDelim) mod 2 + 1) after pString
-   if tLen > 1 then
+   if tLen > 1 and not pNoOverlaps then
       repeat with tI = 2 to tLen
          if char tI to -1 of pDelim is char 1 to -tI of pDelim then
             put char (1-tI) to -1 of pDelim into tDelimA[tI-1]
@@ -35,11 +23,15 @@ function bwmAllOffsets pDelim, pString, pCaseSensitive
       end repeat
    end if
    
-   if tLenList is empty then
-      return _allOffsets0(pDelim, pString, pCaseSensitive)
-   else if the number of lines in the keys of tDelimA is 1 then
-      return _allOffsets1(pDelim, tDelimA[line 1 of tLenList], pString, pCaseSensitive)
-   end if
+   put the number of lines in the keys of tDelimA into tN
+   switch tN
+      case 0
+         return _allOffsets0(pDelim, pString, pCaseSensitive)
+         break
+      case 1
+         return _allOffsets1(pDelim, tDelimA[line 1 of tLenList], pString, pCaseSensitive)
+         break
+   end switch
    
    set the itemDel to pDelim
    put 1 - tLen into tPos
@@ -63,7 +55,7 @@ function bwmAllOffsets pDelim, pString, pCaseSensitive
    else
       return char 1 to -2 of tResult
    end if
-end bwmAllOffsets
+end allOffsets
 
 
 private function _allOffsets0 pDelim, pString, pCaseSensitive

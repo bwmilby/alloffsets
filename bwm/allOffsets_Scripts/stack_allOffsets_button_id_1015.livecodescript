@@ -1,25 +1,13 @@
 Script "stack_allOffsets_button_id_1015"
 
 /*
-# Name: button "allOffsets (bwm)" of bkgnd id 1013 of stack "allOffsets"
+# Name: button "BWM try1" of bkgnd id 1013 of stack "allOffsets"
 # ID: button id 1015 of bkgnd id 1013 of stack "allOffsets"
+# Behavior: button id 1028 of stack "allOffsets"
 */
 
 
-on mouseUp
-   local tStart
-   
-   put the milliseconds into tStart
-   repeat with i = 1 to 1000
-      get allOffsets2(field "needle", field "haystack")
-   end repeat
-   put the milliseconds - tStart & "ms /" && the number of items of it & ": " after field "results"
-   put allOffsets2(field "needle", field "haystack") after field "results"
-   put cr after field "results"
-end mouseUp
-
-
-function allOffsets2 pDelim, pString, pCaseSensitive
+function allOffsets pDelim, pString, pCaseSensitive
    local tDelimA, tI, tItem, tItemLen, tLen, tLenA, tN, tPos, tRemove
    local tResult
    
@@ -76,4 +64,4 @@ function allOffsets2 pDelim, pString, pCaseSensitive
    end if
    if tRemove > 0 then return item 1 to -(tRemove+1) of tResult
    return char 1 to -2 of tResult
-end allOffsets2
+end allOffsets

@@ -1,25 +1,13 @@
 Script "stack_allOffsets_button_id_1009"
 
 /*
-# Name: button "bwmAllOffsets" of bkgnd id 1013 of stack "allOffsets"
+# Name: button "BWM try2" of bkgnd id 1013 of stack "allOffsets"
 # ID: button id 1009 of bkgnd id 1013 of stack "allOffsets"
+# Behavior: button id 1028 of stack "allOffsets"
 */
 
 
-on mouseUp
-   local tStart
-   
-   put the milliseconds into tStart
-   repeat with i = 1 to 1000
-      get bwmAllOffsets(field "needle", field "haystack")
-   end repeat
-   put the milliseconds - tStart & "ms /" && the number of items of it & ": " after field "results"
-   put bwmAllOffsets(field "needle", field "haystack") after field "results"
-   put cr after field "results"
-end mouseUp
-
-
-function bwmAllOffsets pDelim, pString, pCaseSensitive
+function allOffsets pDelim, pString, pCaseSensitive
    local tDelimA, tI, tItem, tItemLen, tLen, tLenA, tN, tPos, tResult
    
    -- returns a comma-delimited list of the offsets of pDelim in pString
@@ -77,7 +65,7 @@ function bwmAllOffsets pDelim, pString, pCaseSensitive
       end repeat
    end if
    return char 1 to -2 of tResult
-end bwmAllOffsets
+end allOffsets
 
 
 private function _allOffsets0 pDelim, pString, pCaseSensitive

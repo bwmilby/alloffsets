@@ -1,28 +1,15 @@
 Script "stack_allOffsets_button_id_1024"
 
 /*
-# Name: button "allOffsets +o" of bkgnd id 1013 of stack "allOffsets"
+# Name: button "GC w/overlap" of bkgnd id 1013 of stack "allOffsets"
 # ID: button id 1024 of bkgnd id 1013 of stack "allOffsets"
+# Behavior: button id 1028 of stack "allOffsets"
 */
-
-
-on mouseUp
-   local tError, tStart
-   
-   put the milliseconds into tStart
-   repeat with i = 1 to 1000
-      get allOffsets(field "needle", field "haystack", false, true)
-   end repeat
-   put the milliseconds - tStart & "ms /" && the number of items of it & ": " after field "results"
-   put the last item of it > len(field "haystack") into tError
-   put allOffsets(field "needle", field "haystack", false, true) after field "results"
-   if tError then put " [Wrong]" after field "results"
-   put cr after field "results"
-end mouseUp
 
 
 function allOffsets D,S,pCase,pWithOverlaps
    local dLength, OV, kList, C, R
+   put true into pWithOverlaps // for testing
    
    -- returns a comma-delimited list of the offsets of D in S
    set the caseSensitive to pCase is true
