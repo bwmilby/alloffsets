@@ -7,20 +7,31 @@ Script "stack_allOffsets_button_id_1033"
 */
 
 
-function allOffsets pDelim, pString, pCaseSensitive
-   local tNewPos, tPos, tResult
+function allOffsets pDelim, pString, pCaseSensitive, pNoOverlap
+   local tNewPos, tPos, tResult, tLen
    
    put textEncode(pDelim, "UTF32") into pDelim
    put textEncode(pString, "UTF32") into pString
    set the caseSensitive to pCaseSensitive is true
    
    put 0 into tPos
-   repeat forever
-      put offset(pDelim, pString, tPos) into tNewPos
-      if tNewPos = 0 then exit repeat
-      add tNewPos to tPos
-      put tPos div 4 + 1,"" after tResult
-   end repeat
+   if pNoOverlap then
+      put the len of pDelim - 4 into tLen
+      repeat forever
+         put offset(pDelim, pString, tPos) into tNewPos
+         if tNewPos = 0 then exit repeat
+         add tNewPos to tPos
+         put tPos div 4 + 1,"" after tResult
+         add tLen to tPos
+      end repeat
+   else
+      repeat forever
+         put offset(pDelim, pString, tPos) into tNewPos
+         if tNewPos = 0 then exit repeat
+         add tNewPos to tPos
+         put tPos div 4 + 1,"" after tResult
+      end repeat
+   end if
    
    if tResult is empty then return 0
    else return char 1 to -2 of tResult

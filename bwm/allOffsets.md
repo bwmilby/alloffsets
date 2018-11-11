@@ -23,12 +23,7 @@
 * Behavior: button id 1028 of stack "allOffsets"
 * [stack_allOffsets_button_id_1003](./allOffsets_Scripts/stack_allOffsets_button_id_1003.livecodescript)
 
-**button "GC no overlap" of bkgnd id 1013 of stack "allOffsets"**
-* ID: button id 1023 of bkgnd id 1013 of stack "allOffsets"
-* Behavior: button id 1028 of stack "allOffsets"
-* [stack_allOffsets_button_id_1023](./allOffsets_Scripts/stack_allOffsets_button_id_1023.livecodescript)
-
-**button "GC w/overlap" of bkgnd id 1013 of stack "allOffsets"**
+**button "GC w/overlap1" of bkgnd id 1013 of stack "allOffsets"**
 * ID: button id 1024 of bkgnd id 1013 of stack "allOffsets"
 * Behavior: button id 1028 of stack "allOffsets"
 * [stack_allOffsets_button_id_1024](./allOffsets_Scripts/stack_allOffsets_button_id_1024.livecodescript)
