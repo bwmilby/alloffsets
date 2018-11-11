@@ -8,7 +8,10 @@ Script "stack_allOffsets_button_id_1028"
 
 on mouseUp
    local tStart, tTime, tError
-   if word 2 of the target is quote&"Offset"&quote then put empty into field "results"
+   if word 2 of the target is quote&"Offset"&quote then
+      put empty into field "results"
+      put len(field "haystack") into field "length"
+   end if
    
    put the milliseconds into tStart
    repeat with i = 1 to 1000

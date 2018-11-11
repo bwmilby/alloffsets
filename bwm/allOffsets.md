@@ -8,6 +8,16 @@
 * Behavior: button id 1028 of stack "allOffsets"
 * [stack_allOffsets_button_id_1022](./allOffsets_Scripts/stack_allOffsets_button_id_1022.livecodescript)
 
+**button "Offset UTF16" of bkgnd id 1013 of stack "allOffsets"**
+* ID: button id 1032 of bkgnd id 1013 of stack "allOffsets"
+* Behavior: button id 1028 of stack "allOffsets"
+* [stack_allOffsets_button_id_1032](./allOffsets_Scripts/stack_allOffsets_button_id_1032.livecodescript)
+
+**button "Offset UTF32" of bkgnd id 1013 of stack "allOffsets"**
+* ID: button id 1033 of bkgnd id 1013 of stack "allOffsets"
+* Behavior: button id 1028 of stack "allOffsets"
+* [stack_allOffsets_button_id_1033](./allOffsets_Scripts/stack_allOffsets_button_id_1033.livecodescript)
+
 **button "GC" of bkgnd id 1013 of stack "allOffsets"**
 * ID: button id 1003 of bkgnd id 1013 of stack "allOffsets"
 * Behavior: button id 1028 of stack "allOffsets"
@@ -42,6 +52,11 @@
 * ID: button id 1026 of bkgnd id 1013 of stack "allOffsets"
 * Behavior: button id 1028 of stack "allOffsets"
 * [stack_allOffsets_button_id_1026](./allOffsets_Scripts/stack_allOffsets_button_id_1026.livecodescript)
+
+**button "BWM try4" of bkgnd id 1013 of stack "allOffsets"**
+* ID: button id 1030 of bkgnd id 1013 of stack "allOffsets"
+* Behavior: button id 1028 of stack "allOffsets"
+* [stack_allOffsets_button_id_1030](./allOffsets_Scripts/stack_allOffsets_button_id_1030.livecodescript)
 
 **button "Prev" of bkgnd id 1013 of stack "allOffsets"**
 * ID: button id 1011 of bkgnd id 1013 of stack "allOffsets"
