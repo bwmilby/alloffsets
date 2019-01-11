@@ -65,3 +65,8 @@
 * ID: button id 1028 of bkgnd id 1013 of stack "allOffsets"
 * [stack_allOffsets_button_id_1028](./allOffsets_Scripts/stack_allOffsets_button_id_1028.livecodescript)
 
+**button "Offset UTF32 v2" of bkgnd id 1013 of stack "allOffsets"**
+* ID: button id 1041 of bkgnd id 1013 of stack "allOffsets"
+* Behavior: button id 1028 of stack "allOffsets"
+* [stack_allOffsets_button_id_1041](./allOffsets_Scripts/stack_allOffsets_button_id_1041.livecodescript)
+
